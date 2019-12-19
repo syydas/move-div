@@ -17,18 +17,18 @@ window.onload = function() {
             var moveY = e.clientY - top;
 
             movelimit(moveX, moveY);
+            changeColor(moveX, moveY);
         }
     }
 
     function mouseUp(left, top) {
-        document.onmouseup = function(e) {
+        document.onmouseup = function() {
             document.onmousemove = null;
-            document.onmousedown = null;
         }
     }
 
     function movelimit(left, top) {
-        if ((left > 0 && left <= 920) && (top > 0 && top <= 720)) {
+        if ((left >= 0 && left <= 920) && (top >= 0 && top <= 720)) {
             moveBlock.style.left = left + "px";
             moveBlock.style.top = top + "px";
         } else {
@@ -46,6 +46,15 @@ window.onload = function() {
                     return 720 + "px";
                 }
             });
+        }
+    }
+
+    function changeColor(left, top) {
+        var staticTop = staticBlock.offsetTop;
+        var staticLeft = staticBlock.offsetLeft;
+        if (top >= staticTop - 80 && top <= staticTop + 80 &&
+            left >= staticLeft - 80 && left <= staticLeft + 80) {
+            staticBlock.style.backgroundColor = "blue";
         }
     }
 }
