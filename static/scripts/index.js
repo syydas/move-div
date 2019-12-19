@@ -7,7 +7,7 @@ window.onload = function() {
         var initialY = e.clientY - this.offsetTop;
 
         mouseMove(initialX, initialY);
-        mouseUp(initialX, initialY);
+        mouseUp();
     }
 
 
@@ -21,7 +21,7 @@ window.onload = function() {
         }
     }
 
-    function mouseUp(left, top) {
+    function mouseUp() {
         document.onmouseup = function() {
             document.onmousemove = null;
         }
@@ -35,14 +35,14 @@ window.onload = function() {
             moveBlock.style.left = (function() {
                 if (left < 0) {
                     return 0 + "px";
-                } else {
+                } else if (left > 920) {
                     return 920 + "px";
                 }
             });
             moveBlock.style.top = (function() {
                 if (top < 0) {
                     return 0 + "px";
-                } else {
+                } else if (top > 720) {
                     return 720 + "px";
                 }
             });
